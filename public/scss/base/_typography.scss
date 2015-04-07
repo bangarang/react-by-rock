@@ -1,0 +1,70 @@
+/**
+ * Base typography
+ */
+html {
+  font-weight: 500;
+  font-size: 100%;
+  line-height: 1.5;
+}
+
+body {
+  font-size: rem(16px);
+}
+
+/**
+ * Links
+ */
+a {
+  color: $pink;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/**
+ * Paragraphs
+ */
+p, %p {
+  font-size: em(16);
+  margin: 0 0 em(32px);
+}
+
+/**
+ * Headings
+ */
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5 {
+  margin-top: 0;
+  margin-bottom: em(16px);
+  font-weight: 1000;
+}
+
+h1, .h1,
+h2, .h2 {
+  margin: 0;
+  color: $white;
+  font-size: em(40px);
+  text-transform: uppercase;
+}
+
+.sport__headline {
+  padding: 60px 80px;
+
+  @include respond-to(mobile) {
+    padding: 20px 0;
+
+    h2 {
+      font-size: em(24px);
+    }
+  }
+}
+
+
+::selection {
+  background: $pink;
+  color: white;
+}

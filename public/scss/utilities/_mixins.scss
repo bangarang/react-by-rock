@@ -1,0 +1,49 @@
+@mixin horizontal-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+
+  > li {
+    display: block;
+    float: left;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+@mixin respond-to($name) {
+  // Retrieves the value from the key
+  $value: map-get($breakpoints, $name);
+
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $name) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $name))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$name}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin text-invisible {
+  display: block;
+  text-indent: -9999em;
+  overflow: hidden;
+}
+
+// Verticle align only works down to IE9
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

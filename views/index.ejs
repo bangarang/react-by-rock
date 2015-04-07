@@ -1,0 +1,9 @@
+<%- include ./layouts/_site_header.ejs %>
+
+    <% if (process.env.NODE_ENV == 'production') { %>
+      <script src="/js/index.min.js" async></script>
+    <% } else { %>
+      <script src="/js/index.js" async></script>
+    <% } %>
+
+<%- include ./layouts/_site_footer.ejs %>

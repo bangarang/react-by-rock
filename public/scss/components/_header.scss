@@ -1,0 +1,63 @@
+.header {
+	position: fixed;
+	z-index: 1;
+	width: 90%;
+	top: 0;
+	right: 0;
+	color: white;
+	border-bottom: white 1px solid;
+	transition: 0.15s ease-out;
+	font-weight: bold;
+
+	.link {
+		line-height: 50px;
+		padding: 0 50px;
+	}
+
+	a.link {
+		color: white;
+		transition: 0.15s ease-out;
+		&:hover, &.active {
+			color: $pink;
+		}
+	}
+		
+	.appointment {
+		background: #f8f8f8;
+		padding: 10px 27px;
+		color: $pink;
+		position: absolute;
+		right: 0;
+		line-height: 1;
+		top: 7px;
+		cursor: pointer;
+		transition: 0.15s ease-out;
+		.close {
+			display: none;
+		}
+	}
+}
+
+.main.sidebar-open {
+	.appointment {
+		padding-right: 60px;
+		color: white;
+		background: $pink;
+	}
+	.appointment .close {
+		display: inline;
+		position: absolute;
+		right: 15px;
+		top: 7px;
+		font-size: 22px;
+		font-weight: 100;
+	}
+}
+
+.main.top {
+	.header {
+		background: rgba(57,47,43,0.9);
+		border: none;
+		top: 10px;
+	}
+}

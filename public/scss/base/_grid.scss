@@ -1,0 +1,7 @@
+.container {
+  @include container;
+}
+
+.ticket-listing {
+  display: none;
+}

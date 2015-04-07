@@ -1,0 +1,29 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+@-ms-viewport { width: auto !important; }
+
+img, media {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+nav ul {
+  list-style: none;
+}
+
+html {
+  background-color: $white;
+}
+
+html, body {
+	height: 100%;
+}
+
+#main {
+  background-color: $gray3;
+}
+

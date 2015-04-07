@@ -1,0 +1,18 @@
+.footer {
+	text-align: center;
+	padding: 150px 0;
+	p {
+		line-height: 2.5;
+	}
+	.logomark {
+		width: 150px;
+		margin: 0 auto 25px;	}
+
+	a {
+		color: $black;
+		transition: 0.15s ease-out;
+	}
+	a:hover {
+		color: $pink;
+	}
+}

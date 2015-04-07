@@ -1,0 +1,49 @@
+/**
+ * Color variables
+ */
+
+// Brand colors
+$brand_red: #cf0a2c;
+
+// Monochromatic grayscale
+$black: #000;
+$white: #fff;
+$gray1: #ccc;
+$gray2: #1d1d1b;
+$gray3: #262626;
+
+$pink: #c114a2;
+
+
+/**
+ * Typography
+ */
+// $museo-sans: 'museo-sans';
+// $museo-slab: 'museo-slab';
+
+// $base-font-family: $museo-sans, Helvetica, Arial, sans-serif;
+
+/**
+ * RWD Breakpoints for layout changes
+ */
+$breakpoints: (
+  // Layout breakpoints
+  'mobile'  : ( max-width:  767px ),
+  'smallimage'  : ( min-width:  500px ),
+  'small'   : ( min-width:  768px ),
+  'smaller'   : ( max-width:  768px ),
+  'overlay'   : ( max-width:  800px ),
+  'medium'  : ( min-width:  960px ),
+  'large'   : ( min-width: 1140px ),
+  'xlarge'   : ( min-width: 1520px ),
+  'tablet'  : ( max-width:  960px )
+);
+
+/**
+ * Susy grid setup
+ */
+$susy: (
+  columns: 12,
+  gutters: 0,
+  container: 1040px
+);
