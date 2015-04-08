@@ -28,6 +28,7 @@ var Main = React.createClass({
             </ul> 
 
             <p>Find the repo on Github at <a href="https://github.com/bangarang/react-by-rock" target="_blank">https://github.com/bangarang/react-by-rock</a></p>
+            <p>It's also hosted on Heroku at <a href="http://reactbyrock.herokuapp.com" target="_blank">http://reactbyrock.herokuapp.com</a></p>
 
             <hr />
 

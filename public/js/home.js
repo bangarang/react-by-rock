@@ -29,6 +29,7 @@ var Main = React.createClass({displayName: "Main",
             ), 
 
             React.createElement("p", null, "Find the repo on Github at ", React.createElement("a", {href: "https://github.com/bangarang/react-by-rock", target: "_blank"}, "https://github.com/bangarang/react-by-rock")), 
+            React.createElement("p", null, "It's also hosted on heroku at ", React.createElement("a", {href: "http://reactbyrock.herokuapp.com", target: "_blank"}, "http://reactbyrock.herokuapp.com")), 
 
             React.createElement("hr", null), 
 
