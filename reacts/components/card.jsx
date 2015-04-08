@@ -10,7 +10,7 @@ var Card = React.createClass({
   },
 
   getInitialState: function() {
-    return { value: '', slected: false }
+    return { value: '', selected: false }
   },
 
   componentWillMount: function(){

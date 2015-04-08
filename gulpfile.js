@@ -90,4 +90,4 @@ gulp.task('develop', function () {
 
 // Default Task
 gulp.task('default', ['build-styles', 'build-reacts', 'watch', 'develop' ]);
-gulp.task('build', ['build-styles-production', 'build-styles', 'build-reacts', 'build-reacts-production' ]);
+gulp.task('build', ['build-styles-production', 'build-reacts-production' ]);

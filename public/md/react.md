@@ -15,7 +15,7 @@ React is based on Components that display data. They have two ways of storing da
     var Card = React.createClass({
       ...
       getInitialState: function() {
-        return { value: '', slected: false }
+        return { value: '', selected: false }
       },
 
       ...
