@@ -133,6 +133,7 @@ var Main = React.createClass({
 
     return (
         <div className="page">
+          <h3 className="select-a-card">Go ahead and pick some cards.</h3>
           <div className="controls">
             <span className="button" onClick={self.filterHearts}>Hearts</span>
             <span className="button" onClick={self.filterDiamonds}>Diamonds</span>

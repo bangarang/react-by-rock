@@ -134,6 +134,7 @@ var Main = React.createClass({displayName: "Main",
 
     return (
         React.createElement("div", {className: "page"}, 
+          React.createElement("h3", {className: "select-a-card"}, "Go ahead and pick some cards."), 
           React.createElement("div", {className: "controls"}, 
             React.createElement("span", {className: "button", onClick: self.filterHearts}, "Hearts"), 
             React.createElement("span", {className: "button", onClick: self.filterDiamonds}, "Diamonds"), 
@@ -31385,11 +31386,6 @@ var Card = React.createClass({displayName: "Card",
 
   selectCard: function(){
     this.setState({selected: !this.state.selected });
-  },
-
-  gotoCard: function(){
-    var self = this;
-    this.context.router.transitionTo( 'card', {suit: self.props.suit, sort: self.props.sort} );
   },
 
   render: function() {

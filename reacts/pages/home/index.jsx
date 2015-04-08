@@ -1,5 +1,6 @@
 var React = require('react'),
     Router = require('react-router');
+    Link = Router.Link;
 
 var Main = React.createClass({
   contextTypes: {
@@ -15,24 +16,23 @@ var Main = React.createClass({
     return (
         <div className="page">
           <div className="container">
-            <h2>Hello</h2>
+            <h2>Hello, I'm Alex Rock and this is about React.</h2>
+            <h3>Contents:</h3>
+            <ul>
+              <li><Link to="react">React</Link></li>
+              <li><Link to="example_card">Example Card</Link></li>
+              <li><Link to="cards">Sortable Deck of Cards</Link></li>
+              <li><Link to="animation">Animation</Link></li>
+              <li><Link to="routing">Routing</Link></li>
+              <li><Link to="links">Links</Link></li>
+            </ul> 
 
-            <h3>Routing</h3>
-            <p><a href="https://github.com/rackt/react-router" target="_blank">react-router</a></p>
+            <p>Find the repo on Github at <a href="https://github.com/bangarang/react-by-rock" target="_blank">https://github.com/bangarang/react-by-rock</a></p>
 
-            <h3>Animation</h3>
-            <p><a href="https://facebook.github.io/react/docs/animation.html" target="_blank">ReactCSSTransitionGroup</a></p>
-            <p><a href="https://github.com/julianshapiro/velocity" target="_blank">Velocity.js</a></p>
-            <p><a href="https://gist.github.com/tkafka/0d94c6ec94297bb67091" target="_blank">VelocityTransitionGroup.jsx</a></p>
+            <hr />
 
-            <h3>Tools</h3>
-            <p><a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en" target="_blank">React Developer Tools for Chrome</a></p>
-            <p><a href="https://github.com/facebook/react/wiki/Complementary-Tools" target="_blank">Complimentary Tools List</a></p>
-
-            <h3>Components</h3>
-            <p><a href="https://github.com/matthewwithanm/react-inlinesvg" target="_blank">react-inlinesvg</a></p>
-            <p><a href="https://github.com/troygoode/node-shuffle" target="_blank">node-shuffle</a></p>
-            <p><a href="https://github.com/glenjamin/react-hotkey" target="_blank">React Hotkeys</a></p>
+            <p>Twitter: <a href="https://twitter.com/lxrck" target="_blank">@lxrck</a></p>
+            <p>Github: <a href="https://github.com/bangarang/" target="_blank">@bangarang</a></p>
 
           </div>
         </div>

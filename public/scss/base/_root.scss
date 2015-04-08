@@ -28,3 +28,12 @@ hr {
 	border-bottom: 1px $gray solid;
 	margin: 30px 0;
 }
+
+code, kbd, pre, samp {
+	font-family: monospace, monospace;
+	font-size: 1em;
+	background: #444;
+	color: white;
+	padding: 15px;
+	line-height: 2;
+}

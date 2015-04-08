@@ -1,7 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var React = require('react'),
     Router = require('react-router');
-    Link = Router.Link;
 
 var Main = React.createClass({displayName: "Main",
   contextTypes: {
@@ -17,23 +16,25 @@ var Main = React.createClass({displayName: "Main",
     return (
         React.createElement("div", {className: "page"}, 
           React.createElement("div", {className: "container"}, 
-            React.createElement("h2", null, "Hello, I'm Alex Rock and this is about React."), 
-            React.createElement("h3", null, "Contents:"), 
-            React.createElement("ul", null, 
-              React.createElement("li", null, React.createElement(Link, {to: "react"}, "React")), 
-              React.createElement("li", null, React.createElement(Link, {to: "example_card"}, "Example Card")), 
-              React.createElement("li", null, React.createElement(Link, {to: "cards"}, "Sortable Deck of Cards")), 
-              React.createElement("li", null, React.createElement(Link, {to: "animation"}, "Animation")), 
-              React.createElement("li", null, React.createElement(Link, {to: "routing"}, "Routing")), 
-              React.createElement("li", null, React.createElement(Link, {to: "links"}, "Links"))
-            ), 
+            React.createElement("h2", null, "Links:"), 
 
-            React.createElement("p", null, "Find the repo on Github at ", React.createElement("a", {href: "https://github.com/bangarang/react-by-rock", target: "_blank"}, "https://github.com/bangarang/react-by-rock")), 
+            React.createElement("h3", null, "Routing"), 
+            React.createElement("p", null, React.createElement("a", {href: "https://github.com/rackt/react-router", target: "_blank"}, "react-router")), 
 
-            React.createElement("hr", null), 
+            React.createElement("h3", null, "Animation"), 
+            React.createElement("p", null, React.createElement("a", {href: "https://facebook.github.io/react/docs/animation.html", target: "_blank"}, "ReactCSSTransitionGroup")), 
+            React.createElement("p", null, React.createElement("a", {href: "https://github.com/julianshapiro/velocity", target: "_blank"}, "Velocity.js")), 
+            React.createElement("p", null, React.createElement("a", {href: "https://gist.github.com/tkafka/0d94c6ec94297bb67091", target: "_blank"}, "VelocityTransitionGroup.jsx")), 
 
-            React.createElement("p", null, "Twitter: ", React.createElement("a", {href: "https://twitter.com/lxrck", target: "_blank"}, "@lxrck")), 
-            React.createElement("p", null, "Github: ", React.createElement("a", {href: "https://github.com/bangarang/", target: "_blank"}, "@bangarang"))
+            React.createElement("h3", null, "Tools"), 
+            React.createElement("p", null, React.createElement("a", {href: "https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en", target: "_blank"}, "React Developer Tools for Chrome")), 
+            React.createElement("p", null, React.createElement("a", {href: "https://github.com/facebook/react/wiki/Complementary-Tools", target: "_blank"}, "Complimentary Tools List")), 
+
+            React.createElement("h3", null, "Components"), 
+            React.createElement("p", null, React.createElement("a", {href: "https://github.com/matthewwithanm/react-inlinesvg", target: "_blank"}, "react-inlinesvg")), 
+            React.createElement("p", null, React.createElement("a", {href: "https://github.com/troygoode/node-shuffle", target: "_blank"}, "node-shuffle")), 
+            React.createElement("p", null, React.createElement("a", {href: "https://github.com/glenjamin/react-hotkey", target: "_blank"}, "React Hotkeys")), 
+            React.createElement("p", null, React.createElement("a", {href: "https://github.com/svenanders/react-markdown-to-html", target: "_blank"}, "React Markdown to HTML"))
 
           )
         )

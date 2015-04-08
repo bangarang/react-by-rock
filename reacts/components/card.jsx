@@ -46,11 +46,6 @@ var Card = React.createClass({
     this.setState({selected: !this.state.selected });
   },
 
-  gotoCard: function(){
-    var self = this;
-    this.context.router.transitionTo( 'card', {suit: self.props.suit, sort: self.props.sort} );
-  },
-
   render: function() {
     var self = this;
     var color = self.state.color,

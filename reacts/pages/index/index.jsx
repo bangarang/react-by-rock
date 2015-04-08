@@ -15,10 +15,13 @@ var InlineSVG = require('react-inlinesvg');
 
 var home = require('../home/index.jsx'),
 	react = require('../react/index.jsx'),
+	routing = require('../routing/index.jsx'),
+	animation = require('../animation/index.jsx'),
+	links = require('../links/index.jsx'),
 	example_card = require('../example_card/index.jsx'),
 	cards = require('../cards/index.jsx');
 
-var slide_names = [ 'home', 'react', 'example_card', 'cards'];
+var slide_names = [ 'home', 'react', 'example_card', 'cards', 'animation', 'routing', 'links'];
 
 var slide_count = 0;
 
@@ -89,7 +92,7 @@ var App = React.createClass({
 		  <div className={name}>
 		    <header>
 		    	<InlineSVG className="react_logo" src="/img/react_logo.svg" uniquifyIDs={false} />
-		    	<h1 className="title">React.js</h1>
+		    	<h1 className="title"><Link to="/">React.js</Link></h1>
 		    	<div className="slide_controls">
 	     			<span className="slide_control" onClick={self.onClickLeft}>{'<'}</span>
 	     			<span className="slide_control" onClick={self.onClickRight}>{'>'}</span>
@@ -110,6 +113,9 @@ var routes = (
   	<DefaultRoute handler={home} />
   	<Route name="home" path="/" handler={home} />
   	<Route name="react" handler={react} />
+  	<Route name="routing" handler={routing} />
+  	<Route name="animation" handler={animation} />
+  	<Route name="links" handler={links} />
   	<Route name="example_card" handler={example_card} />
   	<Route name="card/:suit/:sort" handler={example_card} />
   	<Route name="cards/:suit" handler={cards} />

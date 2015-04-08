@@ -16,10 +16,13 @@ var InlineSVG = require('react-inlinesvg');
 
 var home = require('../home/index.jsx'),
 	react = require('../react/index.jsx'),
+	routing = require('../routing/index.jsx'),
+	animation = require('../animation/index.jsx'),
+	links = require('../links/index.jsx'),
 	example_card = require('../example_card/index.jsx'),
 	cards = require('../cards/index.jsx');
 
-var slide_names = [ 'home', 'react', 'example_card', 'cards'];
+var slide_names = [ 'home', 'react', 'example_card', 'cards', 'animation', 'routing', 'links'];
 
 var slide_count = 0;
 
@@ -90,7 +93,7 @@ var App = React.createClass({displayName: "App",
 		  React.createElement("div", {className: name}, 
 		    React.createElement("header", null, 
 		    	React.createElement(InlineSVG, {className: "react_logo", src: "/img/react_logo.svg", uniquifyIDs: false}), 
-		    	React.createElement("h1", {className: "title"}, "React.js"), 
+		    	React.createElement("h1", {className: "title"}, React.createElement(Link, {to: "/"}, "React.js")), 
 		    	React.createElement("div", {className: "slide_controls"}, 
 	     			React.createElement("span", {className: "slide_control", onClick: self.onClickLeft}, '<'), 
 	     			React.createElement("span", {className: "slide_control", onClick: self.onClickRight}, '>')
@@ -111,6 +114,9 @@ var routes = (
   	React.createElement(DefaultRoute, {handler: home}), 
   	React.createElement(Route, {name: "home", path: "/", handler: home}), 
   	React.createElement(Route, {name: "react", handler: react}), 
+  	React.createElement(Route, {name: "routing", handler: routing}), 
+  	React.createElement(Route, {name: "animation", handler: animation}), 
+  	React.createElement(Route, {name: "links", handler: links}), 
   	React.createElement(Route, {name: "example_card", handler: example_card}), 
   	React.createElement(Route, {name: "card/:suit/:sort", handler: example_card}), 
   	React.createElement(Route, {name: "cards/:suit", handler: cards}), 
@@ -121,7 +127,7 @@ var routes = (
 Router.run(routes, Router.HistoryLocation, function (Handler) {
   React.render(React.createElement(Handler, null), document.body);
 });
-},{"../../components/VelocityTransitionGroup.jsx":364,"../cards/index.jsx":366,"../example_card/index.jsx":367,"../home/index.jsx":368,"../react/index.jsx":369,"react":354,"react-hotkey":125,"react-inlinesvg":126,"react-router":167,"util":361}],2:[function(require,module,exports){
+},{"../../components/VelocityTransitionGroup.jsx":364,"../animation/index.jsx":366,"../cards/index.jsx":367,"../example_card/index.jsx":368,"../home/index.jsx":369,"../links/index.jsx":370,"../react/index.jsx":371,"../routing/index.jsx":372,"react":354,"react-hotkey":125,"react-inlinesvg":126,"react-router":167,"util":361}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -64191,11 +64197,6 @@ var Card = React.createClass({displayName: "Card",
     this.setState({selected: !this.state.selected });
   },
 
-  gotoCard: function(){
-    var self = this;
-    this.context.router.transitionTo( 'card', {suit: self.props.suit, sort: self.props.sort} );
-  },
-
   render: function() {
     var self = this;
     var color = self.state.color,
@@ -64236,6 +64237,37 @@ var Card = React.createClass({displayName: "Card",
 
 module.exports = Card;
 },{"react":354,"react-inlinesvg":126,"react-router":167}],366:[function(require,module,exports){
+var React = require('react'),
+    Router = require('react-router');
+
+var Markdown2HTML = require('react-markdown-to-html');
+
+var Main = React.createClass({displayName: "Main",
+  contextTypes: {
+    router: React.PropTypes.func
+  },
+  getInitialState: function() {
+    return {  };
+  },
+
+  render: function() {
+    var self = this;
+
+    return (
+        React.createElement("div", {className: "page"}, 
+          React.createElement("div", {className: "container"}, 
+
+            React.createElement(Markdown2HTML, {src: "/md/animation.md"})
+
+          )
+        )
+      
+    )
+  }
+});
+
+module.exports = Main;
+},{"react":354,"react-markdown-to-html":140,"react-router":167}],367:[function(require,module,exports){
 var React = require('react'),
     Velocity = require('velocity-animate/velocity'),
     Router = require('react-router');
@@ -64371,6 +64403,7 @@ var Main = React.createClass({displayName: "Main",
 
     return (
         React.createElement("div", {className: "page"}, 
+          React.createElement("h3", {className: "select-a-card"}, "Go ahead and pick some cards."), 
           React.createElement("div", {className: "controls"}, 
             React.createElement("span", {className: "button", onClick: self.filterHearts}, "Hearts"), 
             React.createElement("span", {className: "button", onClick: self.filterDiamonds}, "Diamonds"), 
@@ -64394,7 +64427,7 @@ var Main = React.createClass({displayName: "Main",
 });
 
 module.exports = Main;
-},{"../../components/VelocityTransitionGroup.jsx":364,"../../components/card.jsx":365,"react":354,"react-router":167,"shuffle":356,"velocity-animate/velocity":362,"velocity-animate/velocity.ui":363}],367:[function(require,module,exports){
+},{"../../components/VelocityTransitionGroup.jsx":364,"../../components/card.jsx":365,"react":354,"react-router":167,"shuffle":356,"velocity-animate/velocity":362,"velocity-animate/velocity.ui":363}],368:[function(require,module,exports){
 var React = require('react'),
     Velocity = require('velocity-animate/velocity'),
     Router = require('react-router');
@@ -64476,7 +64509,52 @@ var Main = React.createClass({displayName: "Main",
 });
 
 module.exports = Main;
-},{"../../components/VelocityTransitionGroup.jsx":364,"../../components/card.jsx":365,"react":354,"react-router":167,"shuffle":356,"velocity-animate/velocity":362,"velocity-animate/velocity.ui":363}],368:[function(require,module,exports){
+},{"../../components/VelocityTransitionGroup.jsx":364,"../../components/card.jsx":365,"react":354,"react-router":167,"shuffle":356,"velocity-animate/velocity":362,"velocity-animate/velocity.ui":363}],369:[function(require,module,exports){
+var React = require('react'),
+    Router = require('react-router');
+    Link = Router.Link;
+
+var Main = React.createClass({displayName: "Main",
+  contextTypes: {
+    router: React.PropTypes.func
+  },
+  getInitialState: function() {
+    return {  };
+  },
+
+  render: function() {
+    var self = this;
+
+    return (
+        React.createElement("div", {className: "page"}, 
+          React.createElement("div", {className: "container"}, 
+            React.createElement("h2", null, "Hello, I'm Alex Rock and this is about React."), 
+            React.createElement("h3", null, "Contents:"), 
+            React.createElement("ul", null, 
+              React.createElement("li", null, React.createElement(Link, {to: "react"}, "React")), 
+              React.createElement("li", null, React.createElement(Link, {to: "example_card"}, "Example Card")), 
+              React.createElement("li", null, React.createElement(Link, {to: "cards"}, "Sortable Deck of Cards")), 
+              React.createElement("li", null, React.createElement(Link, {to: "animation"}, "Animation")), 
+              React.createElement("li", null, React.createElement(Link, {to: "routing"}, "Routing")), 
+              React.createElement("li", null, React.createElement(Link, {to: "links"}, "Links"))
+            ), 
+
+            React.createElement("p", null, "Find the repo on Github at ", React.createElement("a", {href: "https://github.com/bangarang/react-by-rock", target: "_blank"}, "https://github.com/bangarang/react-by-rock")), 
+
+            React.createElement("hr", null), 
+
+            React.createElement("p", null, "Twitter: ", React.createElement("a", {href: "https://twitter.com/lxrck", target: "_blank"}, "@lxrck")), 
+            React.createElement("p", null, "Github: ", React.createElement("a", {href: "https://github.com/bangarang/", target: "_blank"}, "@bangarang"))
+
+          )
+        )
+      
+    )
+  }
+});
+
+module.exports = Main;
+},{"react":354,"react-router":167}],370:[function(require,module,exports){
 var React = require('react'),
     Router = require('react-router');
 
@@ -64494,7 +64572,7 @@ var Main = React.createClass({displayName: "Main",
     return (
         React.createElement("div", {className: "page"}, 
           React.createElement("div", {className: "container"}, 
-            React.createElement("h2", null, "Hello"), 
+            React.createElement("h2", null, "Links:"), 
 
             React.createElement("h3", null, "Routing"), 
             React.createElement("p", null, React.createElement("a", {href: "https://github.com/rackt/react-router", target: "_blank"}, "react-router")), 
@@ -64511,7 +64589,8 @@ var Main = React.createClass({displayName: "Main",
             React.createElement("h3", null, "Components"), 
             React.createElement("p", null, React.createElement("a", {href: "https://github.com/matthewwithanm/react-inlinesvg", target: "_blank"}, "react-inlinesvg")), 
             React.createElement("p", null, React.createElement("a", {href: "https://github.com/troygoode/node-shuffle", target: "_blank"}, "node-shuffle")), 
-            React.createElement("p", null, React.createElement("a", {href: "https://github.com/glenjamin/react-hotkey", target: "_blank"}, "React Hotkeys"))
+            React.createElement("p", null, React.createElement("a", {href: "https://github.com/glenjamin/react-hotkey", target: "_blank"}, "React Hotkeys")), 
+            React.createElement("p", null, React.createElement("a", {href: "https://github.com/svenanders/react-markdown-to-html", target: "_blank"}, "React Markdown to HTML"))
 
           )
         )
@@ -64521,7 +64600,7 @@ var Main = React.createClass({displayName: "Main",
 });
 
 module.exports = Main;
-},{"react":354,"react-router":167}],369:[function(require,module,exports){
+},{"react":354,"react-router":167}],371:[function(require,module,exports){
 var React = require('react'),
     Router = require('react-router');
 
@@ -64546,8 +64625,10 @@ var Main = React.createClass({displayName: "Main",
           React.createElement("div", {className: "container"}, 
 
             React.createElement(Markdown2HTML, {src: "/md/react.md"}), 
-
-            React.createElement(Card, {suit: "Heart", sort: 5})
+            React.createElement("div", {className: "card_demo"}, 
+              React.createElement(Card, {suit: "Heart", sort: 5})
+            ), 
+            React.createElement("a", {href: "https://facebook.github.io/react/", target: "_blank"}, "Here are the React Docs for the record.")
 
           )
         )
@@ -64557,4 +64638,35 @@ var Main = React.createClass({displayName: "Main",
 });
 
 module.exports = Main;
-},{"../../components/card.jsx":365,"react":354,"react-highlight":124,"react-markdown-to-html":140,"react-router":167}]},{},[1]);
+},{"../../components/card.jsx":365,"react":354,"react-highlight":124,"react-markdown-to-html":140,"react-router":167}],372:[function(require,module,exports){
+var React = require('react'),
+    Router = require('react-router');
+
+var Markdown2HTML = require('react-markdown-to-html');
+
+var Main = React.createClass({displayName: "Main",
+  contextTypes: {
+    router: React.PropTypes.func
+  },
+  getInitialState: function() {
+    return {  };
+  },
+
+  render: function() {
+    var self = this;
+
+    return (
+        React.createElement("div", {className: "page"}, 
+          React.createElement("div", {className: "container"}, 
+
+            React.createElement(Markdown2HTML, {src: "/md/routing.md"})
+
+          )
+        )
+      
+    )
+  }
+});
+
+module.exports = Main;
+},{"react":354,"react-markdown-to-html":140,"react-router":167}]},{},[1]);
