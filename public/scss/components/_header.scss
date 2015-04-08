@@ -1,0 +1,47 @@
+header {
+	background: $gray;
+	color: white;
+	transition: 0.15s ease-in;
+	.react_logo svg {
+		transition: 0.15s ease-in;
+		width: 50px;
+		height: 50px;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.title {
+		transition: 0.15s ease-in;
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.slide_controls  {
+		position: absolute;
+		top: 0;
+		right: 0;
+		font-size: 35px;
+		line-height: 60px;
+
+		.slide_control {
+			padding: 0 15px;
+			cursor: pointer;
+			transition: 0.15s ease-in;
+		}
+	}
+	.slide_controls .slide_control:hover {
+		color: $red;
+	}
+
+
+}
+
+.home header {
+	text-align: center;
+	.react_logo svg {
+		width: 200px;
+		height: 200px;
+	}
+	.title {
+		display: block;
+	}
+}

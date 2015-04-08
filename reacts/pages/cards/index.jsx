@@ -1,8 +1,5 @@
 var React = require('react'),
-    request = require('superagent'),
-    util = require('util'),
     Velocity = require('velocity-animate/velocity'),
-    Cards = require('cards'),
     Router = require('react-router');
 
 var TransitionGroup = require('../../components/VelocityTransitionGroup.jsx');
@@ -24,8 +21,9 @@ var Main = React.createClass({
 
   filterAll: function(){
     var self = this;
+    var all = self.state.cards;
 
-    self.setState({ current_cards: self.state.cards });
+    self.setState({ current_cards: all });
   },
 
   filterHearts: function(){
@@ -33,6 +31,7 @@ var Main = React.createClass({
     var hearts = self.state.cards.filter(function(object){
       return object.suit === 'Heart';
     })
+
     self.setState({ current_cards: hearts });
   },
 
@@ -135,17 +134,21 @@ var Main = React.createClass({
     return (
         <div className="page">
           <div className="controls">
-            <span onClick={self.filterHearts}>Hearts</span>
-            <span onClick={self.filterDiamonds}>Diamonds</span>
-            <span onClick={self.filterClubs}>Clubs</span>
-            <span onClick={self.filterSpades}>Spades</span>
-            <span onClick={self.sortOrder}>Sort</span>
-            <span onClick={self.shuffleCurrent}>Shuffle</span>
-            <span onClick={self.resetDeck}>Reset</span>
-            <span onClick={self.randomDeck}>Random Deck</span>
-            <span onClick={self.filterAll}>Show All</span>
+            <span className="button" onClick={self.filterHearts}>Hearts</span>
+            <span className="button" onClick={self.filterDiamonds}>Diamonds</span>
+            <span className="button" onClick={self.filterClubs}>Clubs</span>
+            <span className="button" onClick={self.filterSpades}>Spades</span>
+            <span>|</span>
+            <span className="button" onClick={self.sortOrder}>Sort</span>
+            <span className="button" onClick={self.shuffleCurrent}>Shuffle</span>
+            <span>|</span>
+            <span className="button" onClick={self.resetDeck}>Reset</span>
+            <span className="button" onClick={self.randomDeck}>Random Deck</span>
+            <span className="button" onClick={self.filterAll}>Show All</span>
           </div>
-          {cards}
+          <div className="cards">
+            {cards}
+          </div>
         </div>
       
     )

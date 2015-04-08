@@ -11,11 +11,14 @@ var Route = Router.Route,
 	RouteHandler = Router.RouteHandler,
 	Link = Router.Link;
 
+var InlineSVG = require('react-inlinesvg');
 
-var cards = require('../cards/index.jsx'),
-	card = require('../card/index.jsx');
+var home = require('../home/index.jsx'),
+	react = require('../react/index.jsx'),
+	example_card = require('../example_card/index.jsx'),
+	cards = require('../cards/index.jsx');
 
-var slide_names = [ 'cards', 'cards2'];
+var slide_names = [ 'home', 'react', 'example_card', 'cards'];
 
 var slide_count = 0;
 
@@ -38,6 +41,8 @@ var App = React.createClass({
 
 	onClickRight: function(){
 
+		slide_count = slide_names.indexOf(this.context.router.getCurrentRoutes()[1].name);
+
 		if (slide_count ==  slide_names.length ) {
 			slide_count = 0;
 		} else {
@@ -46,10 +51,13 @@ var App = React.createClass({
 
 		this.setState({currentTransition: 'slide-forward'});
 
-		 this.context.router.transitionTo(slide_names[slide_count% slide_names.length ]);
+		this.context.router.transitionTo(slide_names[slide_count% slide_names.length ]);
 	},
 
 	onClickLeft: function(){
+
+		slide_count = slide_names.indexOf(this.context.router.getCurrentRoutes()[1].name);
+
 		if (slide_count == 0) {
 			slide_count = slide_names.length - 1;
 		} else {
@@ -58,7 +66,7 @@ var App = React.createClass({
 		
 		this.setState({currentTransition: 'slide-back'});
 
-		 this.context.router.transitionTo(slide_names[slide_count% slide_names.length ]);
+		this.context.router.transitionTo(slide_names[slide_count% slide_names.length ]);
 	},
 
 	handleKeyDown: function(e) {
@@ -72,22 +80,24 @@ var App = React.createClass({
 
 	render: function () {
 		var self = this;
-		var name = this.context.router.getCurrentPath();
+
+		var name = this.context.router.getCurrentRoutes()[1].name;
 
 		var transition = self.state.currentTransition;
 
 		return (
-		  <div>
+		  <div className={name}>
 		    <header>
-		    	<h1> React.js </h1>
+		    	<InlineSVG className="react_logo" src="/img/react_logo.svg" uniquifyIDs={false} />
+		    	<h1 className="title">React.js</h1>
 		    	<div className="slide_controls">
-		     		<span className="left slider_button" onClick={self.onClickLeft}>Left</span>
-		     		<span className="right slider_button" onClick={self.onClickRight}>Right</span>
-		     	</div>
+	     			<span className="slide_control" onClick={self.onClickLeft}>{'<'}</span>
+	     			<span className="slide_control" onClick={self.onClickRight}>{'>'}</span>
+	     		</div>
 		    </header>
 
 	    	<TransitionGroup transitionName={transition} className="router" component="div">
-		    	<RouteHandler key={name}/>
+		    	<RouteHandler />
 		    </TransitionGroup>
 
 		  </div>
@@ -97,9 +107,11 @@ var App = React.createClass({
 
 var routes = (
   <Route handler={App}>
-  	<DefaultRoute handler={cards} />
-  	<Route name="card" handler={card} />
-  	<Route name="card/:suit/:sort" handler={card} />
+  	<DefaultRoute handler={home} />
+  	<Route name="home" path="/" handler={home} />
+  	<Route name="react" handler={react} />
+  	<Route name="example_card" handler={example_card} />
+  	<Route name="card/:suit/:sort" handler={example_card} />
   	<Route name="cards/:suit" handler={cards} />
     <Route name="cards" handler={cards} />
   </Route>

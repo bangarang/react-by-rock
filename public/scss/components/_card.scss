@@ -1,42 +1,70 @@
 .card_wrapper {
 	display: inline-block;
 	margin: 5px;
-}
+	cursor: pointer;
+	vertical-align: middle;
 
-.card {
-	width: 100px;
-	height: 150px;
-	border: 1px #eee solid;
-	display: table;
-	background: white;
-	
-	&.red {
-		color: red;
+	.card {
+		width: 100px;
+		height: 150px;
+		border: 1px #eee solid;
+		display: table;
+		background: white;
+		transition: 0.15s ease-in;
 
-		path {
-			fill: red;
+		&.red {
+
+			color: $red;
+
+			path {
+				fill: $red;
+			}
+
 		}
 
+		svg {
+			max-width: 50px;
+			max-height: 50px;
+			margin: auto;
+			display: block;
+
+			path {
+				transition: 0.15s ease-in;
+			}
+		}
+
+		.face {
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
+		.value {
+			font-size: 20px;
+		}
 	}
 
-	svg {
-		max-width: 50px;
-		max-height: 50px;
-		margin: auto;
-		display: block;
-	}
+	&.selected .card {
+		&.red {
+			background: $red;
+			color: white;
+			path {
+				fill: white;
+			}
 
-	a.face {
-		display: table-cell;
-		vertical-align: middle;
-		text-align: center;
+		}
+		&.black {
+			background: $black;
+			color: white;
+			path {
+				fill: white;
+			}
+
+		}
 	}
 }
 
 .controls {
 	display: table;
-	width: 100%;
-	max-width: 800px;
 	margin: 20px auto;
 	  border-bottom: 1px solid #aaa;
 	span {

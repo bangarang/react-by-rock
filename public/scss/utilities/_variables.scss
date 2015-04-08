@@ -2,27 +2,13 @@
  * Color variables
  */
 
-// Brand colors
-$brand_red: #cf0a2c;
-
 // Monochromatic grayscale
 $black: #000;
 $white: #fff;
-$gray1: #ccc;
-$gray2: #1d1d1b;
-$gray3: #262626;
-
-$pink: #c114a2;
+$gray: #444;
+$light_gray: #f8f8f8;
 
 $red: #d00;
-
-/**
- * Typography
- */
-// $museo-sans: 'museo-sans';
-// $museo-slab: 'museo-slab';
-
-// $base-font-family: $museo-sans, Helvetica, Arial, sans-serif;
 
 /**
  * RWD Breakpoints for layout changes
@@ -46,5 +32,5 @@ $breakpoints: (
 $susy: (
   columns: 12,
   gutters: 0,
-  container: 1400px
+  container: 1040px
 );

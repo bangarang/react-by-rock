@@ -21,8 +21,9 @@ var Main = React.createClass({displayName: "Main",
   },
 
   getInitialState: function() {
-
-    return { cards: Shuffle.playingCards(), current_cards: Shuffle.playingCards() };
+    var deck = Shuffle.shuffle();
+    var card = deck.draw(1);
+    return { cards: [card] };
   },
 
   componentWillMount: function () {
@@ -47,11 +48,16 @@ var Main = React.createClass({displayName: "Main",
   render: function() {
     var self = this;
 
+    var cards = self.state.cards.map(function(object){
+      return React.createElement(Card, {suit: object.suit, sort: object.sort, key: object.suit + object.sort})
+    });
+
     return (
         React.createElement("div", {className: "page"}, 
-          React.createElement(Card, {suit: self.state.suit, sort: self.state.sort, key: self.state.suit + self.state.sort})
+          React.createElement("div", {className: "example-cards"}, 
+            cards
+          )
         )
-      
     )
   }
 });
@@ -32520,9 +32526,12 @@ var Router = require('react-router');
 var Link = Router.Link;
 
 var Card = React.createClass({displayName: "Card",
+  contextTypes: {
+      router: React.PropTypes.func
+  },
 
   getInitialState: function() {
-    return { value: '' }
+    return { value: '', slected: false }
   },
 
   componentWillMount: function(){
@@ -32545,22 +32554,34 @@ var Card = React.createClass({displayName: "Card",
         value = self.props.sort;
     }
 
-    self.setState({value: value})
-  },
-
-  render: function() {
-    var self = this;
     var color = "black";
-
+      
     if (self.props.suit == "Diamond" || self.props.suit == "Heart" ) {
       color = "red";
     }
 
+    self.setState({value: value, color: color});
+  },
+
+  selectCard: function(){
+    this.setState({selected: !this.state.selected });
+  },
+
+  gotoCard: function(){
+    var self = this;
+    this.context.router.transitionTo( 'card', {suit: self.props.suit, sort: self.props.sort} );
+  },
+
+  render: function() {
+    var self = this;
+    var color = self.state.color,
+        selected = self.state.selected;
+
     return ( 
-      React.createElement("div", {className: "card_wrapper"}, 
+      React.createElement("div", {className:  selected ? "card_wrapper selected" : "card_wrapper", onClick: self.selectCard}, 
         React.createElement("div", {className: "card " + color}, 
           React.createElement("div", {className: "face"}, 
-            React.createElement("span", null, self.state.value), 
+            React.createElement("span", {className: "value"}, self.state.value), 
             React.createElement(InlineSVG, {src: "/img/suits/" + self.props.suit + ".svg"})
           )
         )

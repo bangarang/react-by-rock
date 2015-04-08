@@ -15,10 +15,14 @@ body {
  * Links
  */
 a {
-  color: $pink;
+  color: $black;
   text-decoration: none;
+  border-bottom: 1px $gray dashed;
+  transition: 0.15s ease-in;
   &:hover {
     text-decoration: none;
+    color: $red;
+    border-color: $red;
   }
 }
 
@@ -39,16 +43,14 @@ h3, .h3,
 h4, .h4,
 h5, .h5 {
   margin-top: 0;
-  margin-bottom: em(16px);
+  margin-bottom: 0;
   font-weight: 1000;
 }
 
 h1, .h1,
 h2, .h2 {
   margin: 0;
-  color: $white;
   font-size: em(40px);
-  text-transform: uppercase;
 }
 
 .sport__headline {
@@ -65,6 +67,6 @@ h2, .h2 {
 
 
 ::selection {
-  background: $pink;
+  background: $red;
   color: white;
 }

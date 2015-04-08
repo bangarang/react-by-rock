@@ -14,17 +14,11 @@
 @import "base/grid";
 @import "base/typography";
 
-// Layouts/Partials
-@import "partials/header";
-@import "partials/footer";
-
 // Components
+@import "components/header";
+@import "components/footer";
 @import "components/card";
-
-html {
-	background: #f8f8f8;
-}
-
+@import "components/example-card";
 
 // Pages
 .main {
