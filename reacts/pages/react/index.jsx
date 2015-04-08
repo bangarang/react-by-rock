@@ -4,7 +4,6 @@ var React = require('react'),
 var Markdown2HTML = require('react-markdown-to-html');
 var Card = require('../../components/card.jsx');
 
-var Highlight = require('react-highlight');
 
 var Main = React.createClass({
   contextTypes: {

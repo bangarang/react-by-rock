@@ -100,7 +100,7 @@ var App = React.createClass({
 		    </header>
 
 	    	<TransitionGroup transitionName={transition} className="router" component="div">
-		    	<RouteHandler />
+		    	<RouteHandler  key={name}/>
 		    </TransitionGroup>
 
 		  </div>
