@@ -50,7 +50,9 @@ var Card = React.createClass({
     var self = this;
     var color = self.state.color,
         selected = self.state.selected,
-        show_code = self.props.show_code;
+        show_code = self.props.show_code,
+        suit = self.props.suit.toLowerCase();
+
     if (show_code){
       return ( 
         <div className="example_card">
@@ -58,7 +60,7 @@ var Card = React.createClass({
             <div className={"card " + color}>
               <div className="face">
                 <span className="value">{self.state.value}</span>
-                <InlineSVG src={"/img/suits/" + self.props.suit + ".svg"} />
+                <InlineSVG src={"/img/suits/" + suit + ".svg"} />
               </div>
             </div>
           </div>
@@ -75,7 +77,7 @@ var Card = React.createClass({
           <div className={"card " + color}>
             <div className="face">
               <span className="value">{self.state.value}</span>
-              <InlineSVG src={"/img/suits/" + self.props.suit + ".svg"} />
+              <InlineSVG src={"/img/suits/" + suit + ".svg"} />
             </div>
           </div>
         </div>

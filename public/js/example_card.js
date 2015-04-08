@@ -31314,7 +31314,9 @@ var Card = React.createClass({displayName: "Card",
     var self = this;
     var color = self.state.color,
         selected = self.state.selected,
-        show_code = self.props.show_code;
+        show_code = self.props.show_code,
+        suit = self.props.suit.toLowerCase();
+
     if (show_code){
       return ( 
         React.createElement("div", {className: "example_card"}, 
@@ -31322,7 +31324,7 @@ var Card = React.createClass({displayName: "Card",
             React.createElement("div", {className: "card " + color}, 
               React.createElement("div", {className: "face"}, 
                 React.createElement("span", {className: "value"}, self.state.value), 
-                React.createElement(InlineSVG, {src: "/img/suits/" + self.props.suit + ".svg"})
+                React.createElement(InlineSVG, {src: "/img/suits/" + suit + ".svg"})
               )
             )
           ), 
@@ -31339,7 +31341,7 @@ var Card = React.createClass({displayName: "Card",
           React.createElement("div", {className: "card " + color}, 
             React.createElement("div", {className: "face"}, 
               React.createElement("span", {className: "value"}, self.state.value), 
-              React.createElement(InlineSVG, {src: "/img/suits/" + self.props.suit + ".svg"})
+              React.createElement(InlineSVG, {src: "/img/suits/" + suit + ".svg"})
             )
           )
         )

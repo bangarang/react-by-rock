@@ -64201,7 +64201,9 @@ var Card = React.createClass({displayName: "Card",
     var self = this;
     var color = self.state.color,
         selected = self.state.selected,
-        show_code = self.props.show_code;
+        show_code = self.props.show_code,
+        suit = self.props.suit.toLowerCase();
+
     if (show_code){
       return ( 
         React.createElement("div", {className: "example_card"}, 
@@ -64209,7 +64211,7 @@ var Card = React.createClass({displayName: "Card",
             React.createElement("div", {className: "card " + color}, 
               React.createElement("div", {className: "face"}, 
                 React.createElement("span", {className: "value"}, self.state.value), 
-                React.createElement(InlineSVG, {src: "/img/suits/" + self.props.suit + ".svg"})
+                React.createElement(InlineSVG, {src: "/img/suits/" + suit + ".svg"})
               )
             )
           ), 
@@ -64226,7 +64228,7 @@ var Card = React.createClass({displayName: "Card",
           React.createElement("div", {className: "card " + color}, 
             React.createElement("div", {className: "face"}, 
               React.createElement("span", {className: "value"}, self.state.value), 
-              React.createElement(InlineSVG, {src: "/img/suits/" + self.props.suit + ".svg"})
+              React.createElement(InlineSVG, {src: "/img/suits/" + suit + ".svg"})
             )
           )
         )
@@ -64540,7 +64542,7 @@ var Main = React.createClass({displayName: "Main",
             ), 
 
             React.createElement("p", null, "Find the repo on Github at ", React.createElement("a", {href: "https://github.com/bangarang/react-by-rock", target: "_blank"}, "https://github.com/bangarang/react-by-rock")), 
-            React.createElement("p", null, "It's also hosted on heroku at ", React.createElement("a", {href: "http://reactbyrock.herokuapp.com", target: "_blank"}, "http://reactbyrock.herokuapp.com")), 
+            React.createElement("p", null, "It's also hosted on Heroku at ", React.createElement("a", {href: "http://reactbyrock.herokuapp.com", target: "_blank"}, "http://reactbyrock.herokuapp.com")), 
 
             React.createElement("hr", null), 
 
