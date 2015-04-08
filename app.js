@@ -5,18 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var port     = process.env.PORT || 3000;
-var mongoose = require('mongoose');
 var flash    = require('connect-flash');
 var session  = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var busboy = require('connect-busboy');
 var app = express();
-
-var configDB = require('./config/database.js');
-
-// configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

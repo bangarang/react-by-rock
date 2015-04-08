@@ -12,11 +12,10 @@ var Route = Router.Route,
 	Link = Router.Link;
 
 
-var page1 = require('../page1/index.jsx');
+var cards = require('../cards/index.jsx'),
+	card = require('../card/index.jsx');
 
-
-
-var slide_names = [ 'page1', 'page2'];
+var slide_names = [ 'cards', 'cards2'];
 
 var slide_count = 0;
 
@@ -25,22 +24,20 @@ var hotkey = require('react-hotkey');
 hotkey.activate(); 
 
 var App = React.createClass({
-	mixins: [Router.State, Router.Navigation, hotkey.Mixin('handleKeyDown')], 
 
-	getHandlerKey: function () {
-		var childDepth = 1; // assuming App is top-level route
-		var key = this.getRoutes()[childDepth].name;
-		var id = this.getParams().id;
-		if (id) { key += id; }
-		return key;
+	contextTypes: {
+		router: React.PropTypes.func
 	},
+
+	mixins: [hotkey.Mixin('handleKeyDown')], 
+
 
 	getInitialState: function () { 
 		return { currentTransition: '' };
 	},
 
 	onClickRight: function(){
-		console.log('onClickRight:');
+
 		if (slide_count ==  slide_names.length ) {
 			slide_count = 0;
 		} else {
@@ -49,15 +46,10 @@ var App = React.createClass({
 
 		this.setState({currentTransition: 'slide-forward'});
 
-		console.log(' slide_count: ' + slide_count);
-		console.log(' slide_names[slide_count% slide_names.length ]: ' + slide_names[slide_count% slide_names.length ]);
-
-		this.transitionTo(slide_names[slide_count% slide_names.length ]);
+		 this.context.router.transitionTo(slide_names[slide_count% slide_names.length ]);
 	},
 
 	onClickLeft: function(){
-
-		console.log('onClickLeft:');
 		if (slide_count == 0) {
 			slide_count = slide_names.length - 1;
 		} else {
@@ -66,15 +58,10 @@ var App = React.createClass({
 		
 		this.setState({currentTransition: 'slide-back'});
 
-		console.log(' slide_count: ' + slide_count);
-		console.log(' slide_names[slide_count% slide_names.length ]: ' + slide_names[slide_count% slide_names.length ]);
-
-		this.transitionTo(slide_names[slide_count% slide_names.length ]);
+		 this.context.router.transitionTo(slide_names[slide_count% slide_names.length ]);
 	},
 
 	handleKeyDown: function(e) {
-		var self = this;
-		console.log('handleKeyDown: ' + util.inspect(e.key));
 		var self = this;
 	  if (e.key === 'ArrowLeft') {
 			self.onClickLeft();
@@ -85,13 +72,12 @@ var App = React.createClass({
 
 	render: function () {
 		var self = this;
-		var name = this.getHandlerKey();
+		var name = this.context.router.getCurrentPath();
 
 		var transition = self.state.currentTransition;
 
-		console.log("names: " + name);
 		return (
-		  <div className="container">
+		  <div>
 		    <header>
 		    	<h1> React.js </h1>
 		    	<div className="slide_controls">
@@ -99,11 +85,11 @@ var App = React.createClass({
 		     		<span className="right slider_button" onClick={self.onClickRight}>Right</span>
 		     	</div>
 		    </header>
-		    <div className="main_content">
-		    	<TransitionGroup transitionName={transition} className="router" component="div">
-			    	<RouteHandler key={name} />
-			    </TransitionGroup>
-		    </div>
+
+	    	<TransitionGroup transitionName={transition} className="router" component="div">
+		    	<RouteHandler key={name}/>
+		    </TransitionGroup>
+
 		  </div>
 		);
 	}
@@ -111,12 +97,13 @@ var App = React.createClass({
 
 var routes = (
   <Route handler={App}>
-  	<DefaultRoute handler={page1} />
-    <Route name="page1" path="/1" handler={page1} addHandlerKey={true}/>
-    <Route name="page2" path="/2" handler={page1} addHandlerKey={true}/>
+  	<DefaultRoute handler={cards} />
+  	<Route name="card" handler={card} />
+  	<Route name="card/:suit/:sort" handler={card} />
+  	<Route name="cards/:suit" handler={cards} />
+    <Route name="cards" handler={cards} />
   </Route>
 );
-
 
 Router.run(routes, Router.HistoryLocation, function (Handler) {
   React.render(<Handler/>, document.body);

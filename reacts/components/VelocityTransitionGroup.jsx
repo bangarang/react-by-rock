@@ -48,6 +48,20 @@ var transitions = {
 			zIndex: [ 1, 1 ]
 		}
 	},
+	'slide-up': {
+		duration: 250,
+		stagger: 250,
+		enter: {
+			opacity: [ 1, 0 ], 
+			translateY: [ 0, 75 ], 
+			translateZ: 0 
+		},
+		leave: {
+			opacity: [ 0 , 1 ], 
+			translateY: [ 75, 0 ], 
+			translateZ: 0 
+		}
+	},
 	default: {
 		duration: 250,
 		enter: {
@@ -58,7 +72,8 @@ var transitions = {
 		}
 	}
 };
- 
+
+
 var VelocityTransitionGroupChild = React.createClass({
 	propTypes: {
 		transitionName: React.PropTypes.string.isRequired,
